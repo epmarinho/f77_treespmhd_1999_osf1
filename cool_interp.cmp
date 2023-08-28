@@ -1,0 +1,171 @@
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  15-Jan-2002 16:37:09
+      FUNCTION COOLING ( N, T )
+       IMPLICIT REAL (A-Z)
+       DIMENSION HY(0:1023,0:63), LAMB(0:1023,0:63)
+       COMMON /H_H2_CO/ LAMB, HY
+       INTEGER I_N, I_T
+       REAL RR1, RR2
+       PARAMETER (RR1 = 1. / 13, RR2 = 1. / 7)
+       INTEGER*2 HI6, HI5, HI4, HI3, HI2, HI1
+       INTEGER II2, II1
+       PARAMETER (HI6 = 10, HI5 = 1, II2 = 1023, II1 = 63, HI4 = 1024)
+       PARAMETER (HI3 = 64, HI2 = 128, HI1 = 0)
+       IF (N .EQ. HI1) THEN
+        COOLING = 0.
+        RETURN 
+       END IF
+       IF (T .EQ. HI1) THEN
+        COOLING = 0.
+        RETURN 
+       END IF
+       LGN = LOG10 (N)
+       LGT = LOG10 (T)
+	!print*,lgn,lgT
+       X_N = (HI2 + LGN * HI3) * RR1
+       X_T = LGT * HI4 * RR2
+	!print*,x_n,x_T
+       IF (INT (X_N) .LT. HI1) THEN
+        COOLING = 0.
+        RETURN 
+       END IF
+       IF (INT (X_T) .LT. HI1) THEN
+        COOLING = 0.
+        RETURN 
+       END IF
+       I_N = MIN (INT (X_N), II1)
+       I_T = MIN (INT (X_T), II2)
+	!print*,i_n,i_T
+       L0 = LAMB(I_T,I_N)
+       I_N1 = I_N
+       IF (I_N .LT. II1) I_N1 = I_N + HI5
+       D_L_N = LAMB(I_T,I_N1) - L0
+       I_T1 = I_T
+       IF (I_T .LT. II2) I_T1 = I_T + HI5
+       D_L_T = LAMB(I_T1,I_N) - L0
+       D_N = X_N - I_N
+       D_T = X_T - I_T
+       D_L = D_L_N * D_N + D_L_T * D_T
+       COOLING = L0 + D_L
+       COOLING = HI6 ** COOLING
+	!print*,L
+	!warning: positively returned value.
+	! set efficience to be 25%
+	!*** L=.25*L
+       RETURN 
+      END
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  15-Jan-2002 16:37:09
+!
+!
+      SUBROUTINE ASSEMBL_TABLE
+       IMPLICIT REAL (A-Z)
+       DIMENSION HY(0:1023,0:63), LAMB(0:1023,0:63)
+       COMMON /H_H2_CO/ LAMB, HY
+       INTEGER I_N, I_T
+       INTEGER*2 HI4, HI3, HI2, HI1
+       PARAMETER (HI4 = 1023, HI3 = 63, HI2 = 0, HI1 = 1)
+       OPEN (HI1, FILE='H+H2+CO.dat', STATUS='old') 
+       PRINT *, 'Reading the cooling table.'
+       PRINT *, 'Please, wait.'
+       DO I_N=HI2,HI3
+        DO I_T=HI2,HI4
+         READ (HI1, *) X, X, LAMB(I_T,I_N), HY(I_T,I_N)
+        END DO
+       END DO
+       CLOSE (HI1) 
+       PRINT *, 'Ready.'
+       PRINT *, 'Writing the binary cooling table.'
+       PRINT *, 'Please, wait.'
+       OPEN (HI1, FILE='H+H2+CO.bin', STATUS='unknown', FORM=
+     X   'unformatted') 
+       WRITE (HI1) LAMB
+       CLOSE (HI1) 
+       PRINT *, 'Ready.'
+       RETURN 
+      END
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  15-Jan-2002 16:37:09
+!
+      FUNCTION H_MOL ( N, T )
+       IMPLICIT REAL (A-Z)
+       DIMENSION HY(0:1023,0:63), LAMB(0:1023,0:63)
+       COMMON /H_H2_CO/ LAMB, HY
+       INTEGER I_N, I_T
+       REAL RR1, RR2
+       PARAMETER (RR1 = 1. / 13, RR2 = 1. / 7)
+       INTEGER*2 HI5, HI4, HI3, HI2, HI1
+       INTEGER II2, II1
+       PARAMETER (HI5 = 1, II2 = 1023, II1 = 63, HI4 = 1024, HI3 = 64)
+       PARAMETER (HI2 = 128, HI1 = 0)
+       IF (N .EQ. HI1) THEN
+        H_MOL = 0.
+        RETURN 
+       END IF
+       IF (T .EQ. HI1) THEN
+        H_MOL = 0.
+        RETURN 
+       END IF
+       LGN = LOG10 (N)
+       LGT = LOG10 (T)
+       X_N = (HI2 + LGN * HI3) * RR1
+       X_T = LGT * HI4 * RR2
+       IF (INT (X_N) .LT. HI1) THEN
+        H_MOL = 0.
+        RETURN 
+       END IF
+       IF (INT (X_T) .LT. HI1) THEN
+        H_MOL = 0.
+        RETURN 
+       END IF
+       I_N = MIN (INT (X_N), II1)
+       I_T = MIN (INT (X_T), II2)
+       H0 = HY(I_T,I_N)
+       I_N1 = I_N
+       IF (I_N .LT. II1) I_N1 = I_N + HI5
+       D_H_N = HY(I_T,I_N1) - H0
+       I_T1 = I_T
+       IF (I_T .LT. II2) I_T1 = I_T + HI5
+       D_H_T = HY(I_T1,I_N) - H0
+       D_N = X_N - I_N
+       D_T = X_T - I_T
+       D_H = D_H_N * D_N + D_H_T * D_T
+       H = H0 + D_H
+       H_MOL = H
+       RETURN 
+      END
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  15-Jan-2002 16:37:09
+!
+      SUBROUTINE GET_TABLE
+       IMPLICIT REAL (A-Z)
+       DIMENSION HY(0:1023,0:63), LAMB(0:1023,0:63)
+       COMMON /H_H2_CO/ LAMB, HY
+       INTEGER*2 HI1
+       PARAMETER (HI1 = 1)
+       OPEN (HI1, FILE='H+H2+CO.bin', STATUS='old', FORM='unformatted') 
+       READ (HI1) LAMB
+       CLOSE (HI1) 
+       RETURN 
+      END
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  15-Jan-2002 16:37:09
+!
+      FUNCTION HEATING ( N_H, N_HI )
+       IMPLICIT REAL (A-Z)
+       PARAMETER (HR = 3.8E-29)
+       PARAMETER (HD = 2.2E-28)
+       PARAMETER (ZH = 0.1)
+       REAL RR1
+       PARAMETER (RR1 = HD * ZH)
+       INTEGER*2 HI1
+       PARAMETER (HI1 = 2)
+	!print*,n_H,' cm^-3',n_HI,' cm^-3'
+       GAMM_HR = HR * N_H
+       GAMM_HD = RR1 * N_H * N_HI
+       GAMMA = GAMM_HR + GAMM_HD
+	!print*,Gamma,' ergs cm^-3 sec^-1'
+	!warning: positively returned value.
+	!*** heating = Gamma
+       HEATING = GAMMA * HI1
+	!*** heating = 4*Gamma
+	!*** heating = 8*Gamma
+	!*** heating = 32*Gamma
+	!*** heating = 48*Gamma
+       RETURN 
+      END

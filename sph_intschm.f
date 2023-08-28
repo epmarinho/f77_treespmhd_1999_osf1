@@ -1,0 +1,360 @@
+#if defined (_SPH_ADIABAT)
+#  undef  _ENERGY_CHECK
+#endif
+
+
+      subroutine Predictor_corrector (dE)
+!      Version Jul  7 1995
+!      Revised Sep  5 1995
+!              Sep 11 1995
+!              Sep 15 1995
+!              Jul 11 1996
+!            Aug 11 1996
+!            Aug 12 1996
+!            Aug 13 1996
+!            Sep  7 1996
+      INCLUDE 'SPH_common.h'
+#ifndef _N_BODY
+      if(n_p(timebin).lt.1)return
+      call initial_saving
+#endif
+      call move_particles
+#ifdef _N_BODY
+      call advance_velocities
+#else
+      call set_no_convergence
+      call reset_time_list
+      call predict_velocities(1.,0)
+      call preliminaries
+#  ifndef _TUBE
+#    ifndef _NON_SELFGRAVITATING
+      call treegravity
+#    else
+      call extern_gravity_2d
+#    endif
+#    ifdef _SPMHD
+      call advance_B
+      call field_contrib
+#    endif
+#  endif
+      call integrate_on_u_v
+#  ifdef _SPMHD
+      call correct_B
+#  endif
+#  ifndef _SPH_ADIABAT
+#    if ( defined(_SPH_STR) || defined(_SPH_STR_SN) )
+      call check_stars
+#    endif
+#  endif
+#endif
+#ifdef _ENERGY_CHECK
+      call artificial_heating(dE)
+#endif
+      call save_old_timesteps
+#ifdef _VERBOSE
+      print*,'predictor_corrector: done'
+#endif
+      end
+
+
+#ifdef _ENERGY_CHECK
+      subroutine Artificial_heating(dE)
+      INCLUDE 'SPH_common.h'
+      do il=1,n_p(timebin)
+        i=p_list(il,timebin)
+        if (gas(i))u(i) = (1+dE)*u(i)
+      end do
+      end
+#endif
+
+
+#ifndef _N_BODY
+
+      subroutine Integrate_on_u_v
+      common/general_counter/ icounter
+#  if defined(_TUBE)||!defined(_SPH_ADIABAT)
+      logical repeat
+      repeat= .true.
+#ifdef _VERBOSE
+      print*,'Integrate_on_u_v'
+#endif
+      icounter=0
+#    ifndef _NEW_METHOD
+      do while (repeat)
+        icounter=icounter+1
+        write(*,'(a25,i3,a)')'predictor-corrector (pass',icounter,')'
+        call Step_counter
+#      if !defined(_SPH_ISOTHERM)
+        call predict_velocities(1.,1)
+        call advance_energies
+#      else
+        call predict_velocities(.75,0)
+#      endif !_SPH_ISOTHERM
+        call advance_velocities
+        call check_convergence(repeat)
+      end do
+#    else _NEW_METHOD
+      call predict_velocities(1.5,0)
+#      ifndef _SPH_ISOTHERM
+      do while (repeat)
+        icounter=icounter+1
+        write(*,'(a25,i3,a)')'predictor-corrector (pass',icounter,')'
+        call step_counter
+        call advance_energies
+        call check_convergence(repeat)
+      end do
+#      endif _SPH_ISOTHERM
+      call advance_velocities
+#    endif _NEW_METHOD
+#  elif defined (_SPH_ADIABAT)
+      INCLUDE 'SPH_common.h'
+      call predict_velocities(1.25,0)/* for prediction only */
+      do iter=1,n_timebins/2+1
+        call advance_energies
+      end do
+      call advance_velocities
+#  endif
+#ifdef _VERBOSE
+      print*,'Integrate_on_u_v: done'
+#endif
+      end
+
+
+      subroutine Set_i_list
+      INCLUDE 'SPH_common.h'
+      do i_=1,n_p(timebin)
+        i_list(p_list(i_,timebin))=.true.
+      end do
+      end
+
+
+      subroutine Check_convergence(repeat)
+      logical repeat
+      INCLUDE 'SPH_common.h'
+      itol=17
+      tol=1
+      do i=1,itol
+        tol=.5*tol
+      end do
+      repeat = .false.
+#if defined(_SPH_ISOTHERM)||defined(_NEW_METHOD)
+      T_old = T_tot
+      call Kinetic_energy(1.)
+      control=abs(T_tot-T_old)-tol*T_tot
+      repeat = repeat.or.(control.gt.0)
+#else
+      do il=1,n_p(timebin)
+        i=p_list(il,timebin)
+        if(gas(i).and.i_list(i))then
+          if(u(i).gt.0)then
+            control=abs(u(i)-u_old(i))-tol*u(i)
+            i_list(i)=(control.gt.0)
+            control=(abs(u(i)-u_old(i))-tol*u_old(i))
+            i_list(i)=i_list(i).or.(control.gt.0)
+          endif
+          do j=1,dim
+            control=abs(v(i,j)-v_old(i,j))-tol*v(i,j)
+            i_list(i)=i_list(i).or.(control.gt.0)
+            control=abs(v(i,j)-v_old(i,j))-tol*v_old(i,j)
+            i_list(i)=i_list(i).or.(control.gt.0)
+          end do
+          repeat = (repeat.or.i_list(i)).and.(iter.lt.1024)
+        endif
+      end do
+      if(iter.eq.1024)then
+        print*,'WARNING: Too many iterations on integrating (u,v).'
+      endif
+#endif
+      end
+
+
+
+      subroutine Preliminaries
+      INCLUDE 'SPH_common.h'
+#ifdef _VERBOSE
+      print*,'Preliminaries'
+#endif
+#ifdef _FAST_SEARCHING
+      if (starting) then
+          call Maketree
+          call Search_lengths
+          starting = .false.
+      else
+          call Advance_lengths
+      endif
+#else
+      call Maketree
+      call Search_lengths
+#endif
+      call Densities
+      call Get_kernel_grad
+#ifdef _VERBOSE
+      print*,'end Preliminaries'
+#endif
+      end
+
+      subroutine Step_counter
+      INCLUDE 'SPH_common.h'
+      iter = iter + 1
+      end
+
+      subroutine Set_no_convergence
+      integer il,i
+      INCLUDE 'SPH_common.h'
+      iter = 0
+      do il=1,n_p(timebin)
+        i=p_list(il,timebin)
+        i_list(i)=.true.
+      end do
+      end
+
+      subroutine Initial_saving
+      integer il,i,j
+      INCLUDE 'SPH_common.h'
+      do j=1,dim
+        do il=1,n_p(timebin)
+          i=p_list(il,timebin)
+          v_o(i,j)=v(i,j)
+        end do
+      end do
+#ifdef _SPMHD
+      do il=1,n_p(timebin)
+        i=p_list(il,timebin)
+        if (gas(i)) then
+          tau=.25*(dt(timebin)+dt_old(i))
+          do j=1,dim
+            v(i,j) = v_o(i,j) - .5*dt_old(i)*accel(i,j)
+            B_o(i,j) = B(i,j) + tau*B_rate(i,j)
+          end do
+        endif
+      end do
+#endif
+#ifndef _SPH_ISOTHERM
+      do il=1,n_p(timebin)
+        i=p_list(il,timebin)
+        if(gas(i))then
+          tau=.25*(dt(timebin)+dt_old(i))
+          u_o(i)=u(i)+tau*u_dot(i)! u_dot is the old value
+        endif
+      end do
+      end
+
+      subroutine Save_old_velocities
+      integer il,i
+      INCLUDE 'SPH_common.h'
+      do il=1,n_p(timebin)
+       i=p_list(il,timebin)
+       do j=1,dim
+         if(gas(i).or.i_list(i)) v_old(i,j) = v(i,j)
+       end do
+      end do
+      end
+
+      subroutine Save_old_energies
+      integer il,i
+      INCLUDE 'SPH_common.h'
+      do il=1,n_p(timebin)
+       i=p_list(il,timebin)
+       if(gas(i).or.i_list(i)) u_old(i) = u(i)
+      end do
+#endif
+      end
+#endif
+
+
+      subroutine Initialize
+      INCLUDE 'SPH_common.h'
+#ifdef _VERBOSE
+      print*,'not_yet =',not_yet
+#endif
+      if(not_yet)then
+#ifdef _VERBOSE
+        print*,'Initialize: start'
+#endif
+#if defined(_SPH_STR)||defined(_SPH_STR_SN)
+        n_str       = 0
+#endif
+        n_p(1)      = n
+        n_timebins  = 1
+        timebin     = 1
+        do i=1,n_p(timebin)
+          p_list(i,timebin)=i
+#ifndef _N_BODY
+          i_list(i) = .true.
+          gas(i)    = .true.
+        end do
+        you_can = .false.
+        call Preliminaries
+        call Sound_speed
+        call Pressures
+#  ifdef _SPH_ISOTHERM
+        call Temp_
+#  endif
+        call Get_h_dot
+#else
+        end do
+        call MakeTree
+#endif
+#ifdef _FAST_SEARCHING
+        starting = .false.
+#endif
+        you_can = .true.
+        not_yet  = .false.
+        first    = .false.
+        if(dt(0).eq.0.0)return
+#ifdef _FAST_SEARCHING
+      else
+        starting = .true.
+#endif
+      endif
+      if(ichoice.eq.1)then
+#if !( defined (_SPH_ISOTHERM) || defined (_N_BODY) )
+        call SPH_First_law
+#endif
+#if ! ( defined (_N_BODY) )
+        call Accelerations
+#elif ! defined (_TUBE)
+#  ifndef _NON_SELFGRAVITATING
+        call treegravity
+#  else
+        call extern_gravity_2d          
+#  endif
+#endif
+        call Start_list
+        do i=1,n
+          dt_old(i) = 0
+        end do
+        ichoice=0
+        call predictor_corrector(0.)
+      endif
+      call Start_list
+#if ! defined (_N_BODY)
+      call Set_i_list
+#endif
+#ifdef _VERBOSE
+      print*,'initialize: done'
+#endif
+      end
+
+
+
+      subroutine Integration_scheme (dE)
+      INCLUDE 'SPH_common.h'
+#ifdef _VERBOSE
+      print*,'Integration_scheme'
+#endif
+#ifndef _N_BODY
+      call StartSeeds
+#endif
+      call Initialize
+      if(dt(0).eq.0.0)return
+      call multi_leapfrog (dE)
+#ifdef _VERBOSE
+      call show_bins
+#endif
+      call integral_quantities
+      call recover_dtm
+#ifdef _VERBOSE
+      print*,'Integration_scheme: done'
+#endif
+      end

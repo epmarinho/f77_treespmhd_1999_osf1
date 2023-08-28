@@ -1,0 +1,1686 @@
+rm -f  *.o *.l *.out *.cmp.f SPH_common.h
+make exec \
+	'PREFIX=' \
+	'SUFFIX=nbody' \
+	'DIRECTIVES='
+make[1]: Entering directory `/home/eraldo/treespmhd/treecode'
+/lib/cpp  SPH_common.F > SPH_common.h
+f77 -ansi  -ffixed-line-length-132   -c -o SPH_main.o SPH_main.F
+gcc -ansi    -c -o amax.o amax.c
+gcc -ansi    -c -o amin.o amin.c
+gcc -ansi    -c -o sph_io.o sph_io.c
+f77 -ansi  -ffixed-line-length-132   -c -o SPH_usr.o SPH_usr.F
+SPH_common.F: In subroutine `densities':
+SPH_common.F:290: 
+         common /hlist/ h_list(nn)
+                               ^
+Invalid declaration of or reference to symbol `nn' at (^) [initially seen at (^)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+           1
+SPH_common.F:290: (continued):
+         common /hlist/ h_list(nn)
+                        2
+Invalid declaration of or reference to symbol `h_list' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                         1
+SPH_common.F:291: (continued):
+         common /status/ gas(nn)
+                         2
+Invalid declaration of or reference to symbol `gas' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+              1
+SPH_common.F:293: (continued):
+         common /particle_mass/ mass(nn)
+                                2
+Invalid declaration of or reference to symbol `mass' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                  1
+SPH_common.F:294: (continued):
+         common /particle_size/ s(nn)
+                                2
+Invalid declaration of or reference to symbol `s' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                             1
+SPH_common.F:296: (continued):
+         common /number_of_neighbours/ neighb (nn)
+                                       2
+Invalid declaration of or reference to symbol `neighb' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                       1
+SPH_common.F:297: (continued):
+         common /smoothing_lengths/ h (nn)
+                                    2
+Invalid declaration of or reference to symbol `h' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                         1
+SPH_common.F:298: (continued):
+        & ,h_dot (nn)
+           2
+Invalid declaration of or reference to symbol `h_dot' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                    1
+SPH_common.F:299: (continued):
+         common /sph_densities/ rho (nn)
+                                2
+Invalid declaration of or reference to symbol `rho' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+           1
+SPH_common.F:300: (continued):
+         common /pressure/ P (nn)
+                           2
+Invalid declaration of or reference to symbol `p' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                              1
+SPH_common.F:301: (continued):
+         common /temperatures/ Temp (nn)
+                               2
+Invalid declaration of or reference to symbol `temp' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                   1
+SPH_common.F:302: (continued):
+         common /speed_of_the_sound/ cs (nn)
+                                     2
+Invalid declaration of or reference to symbol `cs' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+           1
+SPH_common.F:304: (continued):
+        & u (nn)
+          2
+Invalid declaration of or reference to symbol `u' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                   1
+SPH_common.F:305: (continued):
+        & ,u_o (nn)
+           2
+Invalid declaration of or reference to symbol `u_o' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                      1
+SPH_common.F:306: (continued):
+        & ,u_old (nn)
+           2
+Invalid declaration of or reference to symbol `u_old' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+             1
+SPH_common.F:307: (continued):
+        & ,u_dot (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                   1
+SPH_common.F:308: (continued):
+        & ,u_dot_visc (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot_visc' at (2) [initially seen at (1)]
+SPH_common.F:45: 
+        & ,lambda,luminosity,two_third,xnorm,root_3,sc,W_p,W_s
+           1
+SPH_common.F:309: (continued):
+        & ,lambda (nn)
+           2
+Invalid declaration of or reference to symbol `lambda' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                            1
+SPH_common.F:310: (continued):
+        & ,vmonag (nn)
+           2
+Invalid declaration of or reference to symbol `vmonag' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+           1
+SPH_common.F:316: (continued):
+        & iseed(nn)
+          2
+Invalid declaration of or reference to symbol `iseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                 1
+SPH_common.F:317: (continued):
+        & ,jseed(nn)
+           2
+Invalid declaration of or reference to symbol `jseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                       1
+SPH_common.F:318: (continued):
+        & ,kseed(nn)
+           2
+Invalid declaration of or reference to symbol `kseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                             1
+SPH_common.F:319: (continued):
+        & ,lseed(nn)
+           2
+Invalid declaration of or reference to symbol `lseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                   1
+SPH_common.F:320: (continued):
+        & ,mseed(nn)
+           2
+Invalid declaration of or reference to symbol `mseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                         1
+SPH_common.F:321: (continued):
+        & ,nseed(nn)
+           2
+Invalid declaration of or reference to symbol `nseed' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                  1
+SPH_common.F:322: (continued):
+         common /not_conv_list/ i_list(nn)
+                                2
+Invalid declaration of or reference to symbol `i_list' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                   1
+SPH_common.F:351: (continued):
+         common /t/ t(nn,four)
+                    2
+Invalid declaration of or reference to symbol `t' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                                    1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                                           2
+Invalid declaration of or reference to symbol `maxneighb' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                 1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                            2
+Invalid declaration of or reference to symbol `neighb_list' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+             1
+SPH_common.F:358: (continued):
+         common /viscotensor/ QQ(nn,maxneighb)
+                              2
+Invalid declaration of or reference to symbol `qq' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                            1
+SPH_common.F:363: (continued):
+         common /grad_list/ grad_W(nn,maxneighb,dim)
+                            2
+Invalid declaration of or reference to symbol `grad_w' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                      1
+SPH_common.F:373: (continued):
+        & g (nn,dim)
+          2
+Invalid declaration of or reference to symbol `g' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                      1
+SPH_common.F:374: (continued):
+        & ,q_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `q_acc' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                1
+SPH_common.F:375: (continued):
+        & ,P_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `p_acc' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                                    1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                               2
+Invalid declaration of or reference to symbol `ntbins' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                  1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                           2
+Invalid declaration of or reference to symbol `n_p' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                1
+SPH_common.F:392: (continued):
+         common /timelist/ p_list(nn,ntbins)
+                           2
+Invalid declaration of or reference to symbol `p_list' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+           1
+SPH_common.F:393: (continued):
+         common /individual_time/dt_old(nn)
+                                 2
+Invalid declaration of or reference to symbol `dt_old' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                              1
+SPH_common.F:394: (continued):
+         common /time_steps/ dt(0:ntbins)
+                             2
+Invalid declaration of or reference to symbol `dt' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                   1
+SPH_common.F:395: (continued):
+         common /elapsed_time/ dt_elapsed(ntbins)
+                               2
+Invalid declaration of or reference to symbol `dt_elapsed' at (2) [initially seen at (1)]
+SPH_common.F:29: 
+        & ,lst,ifile,ni,vert,ini,nit
+           1
+SPH_common.F:402: (continued):
+         common /octlist/ lst(nn,vert)
+                          2
+Invalid declaration of or reference to symbol `lst' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                              1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                                2
+Invalid declaration of or reference to symbol `nnode' at (2) [initially seen at (1)]
+SPH_common.F:60: 
+         logical nextnode,permit,convergence
+                          1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                         2
+Invalid declaration of or reference to symbol `permit' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                        1
+SPH_common.F:405: (continued):
+        & arest (nnode)
+          2
+Invalid declaration of or reference to symbol `arest' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                   1
+SPH_common.F:407: (continued):
+        & cellmass (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `cellmass' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                            1
+SPH_common.F:409: (continued):
+        & x_cell (nnode, vert, dim)
+          2
+Invalid declaration of or reference to symbol `x_cell' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                  1
+SPH_common.F:411: (continued):
+        & p_inertia(nnode, vert, dim, dim)
+          2
+Invalid declaration of or reference to symbol `p_inertia' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                      1
+SPH_common.F:413: (continued):
+        & np (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `np' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                       1
+SPH_common.F:414: (continued):
+        & ,label (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `label' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                              1
+SPH_common.F:415: (continued):
+        & ,down (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `down' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                   1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                               2
+Invalid declaration of or reference to symbol `maxoctants' at (2) [initially seen at (1)]
+SPH_common.F:43: 
+        & ,E_tot,W_tot,T_tot,U_tot,E_min,E_max,Eo,courant,vmoment,gnode
+                                                                  1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                         2
+Invalid declaration of or reference to symbol `gnode' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                      1
+SPH_common.F:420: (continued):
+         common /positions/ xp(nn,dim)
+                            2
+Invalid declaration of or reference to symbol `xp' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                    1
+SPH_common.F:421: (continued):
+         common /velocities/ v(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `v' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                        1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                     2
+Invalid declaration of or reference to symbol `v_o' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                            1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                                  2
+Invalid declaration of or reference to symbol `v_old' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+              1
+SPH_common.F:424: (continued):
+         common /result_acc/ accel(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `accel' at (2) [initially seen at (1)]
+SPH_common.F:433: 
+         common /boxy_coordinates/box (nn,dim)
+                                  ^
+Invalid declaration of or reference to symbol `box' at (^) [initially seen at (^)]
+SPH_common.F: In subroutine `rho_':
+SPH_common.F:290: 
+         common /hlist/ h_list(nn)
+                               ^
+Invalid declaration of or reference to symbol `nn' at (^) [initially seen at (^)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+           1
+SPH_common.F:290: (continued):
+         common /hlist/ h_list(nn)
+                        2
+Invalid declaration of or reference to symbol `h_list' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                         1
+SPH_common.F:291: (continued):
+         common /status/ gas(nn)
+                         2
+Invalid declaration of or reference to symbol `gas' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+              1
+SPH_common.F:293: (continued):
+         common /particle_mass/ mass(nn)
+                                2
+Invalid declaration of or reference to symbol `mass' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                  1
+SPH_common.F:294: (continued):
+         common /particle_size/ s(nn)
+                                2
+Invalid declaration of or reference to symbol `s' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                             1
+SPH_common.F:296: (continued):
+         common /number_of_neighbours/ neighb (nn)
+                                       2
+Invalid declaration of or reference to symbol `neighb' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                       1
+SPH_common.F:297: (continued):
+         common /smoothing_lengths/ h (nn)
+                                    2
+Invalid declaration of or reference to symbol `h' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                         1
+SPH_common.F:298: (continued):
+        & ,h_dot (nn)
+           2
+Invalid declaration of or reference to symbol `h_dot' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                    1
+SPH_common.F:299: (continued):
+         common /sph_densities/ rho (nn)
+                                2
+Invalid declaration of or reference to symbol `rho' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+           1
+SPH_common.F:300: (continued):
+         common /pressure/ P (nn)
+                           2
+Invalid declaration of or reference to symbol `p' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                              1
+SPH_common.F:301: (continued):
+         common /temperatures/ Temp (nn)
+                               2
+Invalid declaration of or reference to symbol `temp' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                   1
+SPH_common.F:302: (continued):
+         common /speed_of_the_sound/ cs (nn)
+                                     2
+Invalid declaration of or reference to symbol `cs' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+           1
+SPH_common.F:304: (continued):
+        & u (nn)
+          2
+Invalid declaration of or reference to symbol `u' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                   1
+SPH_common.F:305: (continued):
+        & ,u_o (nn)
+           2
+Invalid declaration of or reference to symbol `u_o' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                      1
+SPH_common.F:306: (continued):
+        & ,u_old (nn)
+           2
+Invalid declaration of or reference to symbol `u_old' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+             1
+SPH_common.F:307: (continued):
+        & ,u_dot (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                   1
+SPH_common.F:308: (continued):
+        & ,u_dot_visc (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot_visc' at (2) [initially seen at (1)]
+SPH_common.F:45: 
+        & ,lambda,luminosity,two_third,xnorm,root_3,sc,W_p,W_s
+           1
+SPH_common.F:309: (continued):
+        & ,lambda (nn)
+           2
+Invalid declaration of or reference to symbol `lambda' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                            1
+SPH_common.F:310: (continued):
+        & ,vmonag (nn)
+           2
+Invalid declaration of or reference to symbol `vmonag' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+           1
+SPH_common.F:316: (continued):
+        & iseed(nn)
+          2
+Invalid declaration of or reference to symbol `iseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                 1
+SPH_common.F:317: (continued):
+        & ,jseed(nn)
+           2
+Invalid declaration of or reference to symbol `jseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                       1
+SPH_common.F:318: (continued):
+        & ,kseed(nn)
+           2
+Invalid declaration of or reference to symbol `kseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                             1
+SPH_common.F:319: (continued):
+        & ,lseed(nn)
+           2
+Invalid declaration of or reference to symbol `lseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                   1
+SPH_common.F:320: (continued):
+        & ,mseed(nn)
+           2
+Invalid declaration of or reference to symbol `mseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                         1
+SPH_common.F:321: (continued):
+        & ,nseed(nn)
+           2
+Invalid declaration of or reference to symbol `nseed' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                  1
+SPH_common.F:322: (continued):
+         common /not_conv_list/ i_list(nn)
+                                2
+Invalid declaration of or reference to symbol `i_list' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                   1
+SPH_common.F:351: (continued):
+         common /t/ t(nn,four)
+                    2
+Invalid declaration of or reference to symbol `t' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                                    1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                                           2
+Invalid declaration of or reference to symbol `maxneighb' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                 1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                            2
+Invalid declaration of or reference to symbol `neighb_list' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+             1
+SPH_common.F:358: (continued):
+         common /viscotensor/ QQ(nn,maxneighb)
+                              2
+Invalid declaration of or reference to symbol `qq' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                            1
+SPH_common.F:363: (continued):
+         common /grad_list/ grad_W(nn,maxneighb,dim)
+                            2
+Invalid declaration of or reference to symbol `grad_w' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                      1
+SPH_common.F:373: (continued):
+        & g (nn,dim)
+          2
+Invalid declaration of or reference to symbol `g' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                      1
+SPH_common.F:374: (continued):
+        & ,q_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `q_acc' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                1
+SPH_common.F:375: (continued):
+        & ,P_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `p_acc' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                                    1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                               2
+Invalid declaration of or reference to symbol `ntbins' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                  1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                           2
+Invalid declaration of or reference to symbol `n_p' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                1
+SPH_common.F:392: (continued):
+         common /timelist/ p_list(nn,ntbins)
+                           2
+Invalid declaration of or reference to symbol `p_list' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+           1
+SPH_common.F:393: (continued):
+         common /individual_time/dt_old(nn)
+                                 2
+Invalid declaration of or reference to symbol `dt_old' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                              1
+SPH_common.F:394: (continued):
+         common /time_steps/ dt(0:ntbins)
+                             2
+Invalid declaration of or reference to symbol `dt' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                   1
+SPH_common.F:395: (continued):
+         common /elapsed_time/ dt_elapsed(ntbins)
+                               2
+Invalid declaration of or reference to symbol `dt_elapsed' at (2) [initially seen at (1)]
+SPH_common.F:29: 
+        & ,lst,ifile,ni,vert,ini,nit
+           1
+SPH_common.F:402: (continued):
+         common /octlist/ lst(nn,vert)
+                          2
+Invalid declaration of or reference to symbol `lst' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                              1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                                2
+Invalid declaration of or reference to symbol `nnode' at (2) [initially seen at (1)]
+SPH_common.F:60: 
+         logical nextnode,permit,convergence
+                          1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                         2
+Invalid declaration of or reference to symbol `permit' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                        1
+SPH_common.F:405: (continued):
+        & arest (nnode)
+          2
+Invalid declaration of or reference to symbol `arest' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                   1
+SPH_common.F:407: (continued):
+        & cellmass (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `cellmass' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                            1
+SPH_common.F:409: (continued):
+        & x_cell (nnode, vert, dim)
+          2
+Invalid declaration of or reference to symbol `x_cell' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                  1
+SPH_common.F:411: (continued):
+        & p_inertia(nnode, vert, dim, dim)
+          2
+Invalid declaration of or reference to symbol `p_inertia' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                      1
+SPH_common.F:413: (continued):
+        & np (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `np' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                       1
+SPH_common.F:414: (continued):
+        & ,label (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `label' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                              1
+SPH_common.F:415: (continued):
+        & ,down (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `down' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                   1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                               2
+Invalid declaration of or reference to symbol `maxoctants' at (2) [initially seen at (1)]
+SPH_common.F:43: 
+        & ,E_tot,W_tot,T_tot,U_tot,E_min,E_max,Eo,courant,vmoment,gnode
+                                                                  1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                         2
+Invalid declaration of or reference to symbol `gnode' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                      1
+SPH_common.F:420: (continued):
+         common /positions/ xp(nn,dim)
+                            2
+Invalid declaration of or reference to symbol `xp' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                    1
+SPH_common.F:421: (continued):
+         common /velocities/ v(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `v' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                        1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                     2
+Invalid declaration of or reference to symbol `v_o' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                            1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                                  2
+Invalid declaration of or reference to symbol `v_old' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+              1
+SPH_common.F:424: (continued):
+         common /result_acc/ accel(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `accel' at (2) [initially seen at (1)]
+SPH_common.F:433: 
+         common /boxy_coordinates/box (nn,dim)
+                                  ^
+Invalid declaration of or reference to symbol `box' at (^) [initially seen at (^)]
+SPH_usr.F:37: 
+         rho(i)=0
+         1
+SPH_common.F:46: (continued):
+        & ,cc,accel,rho,v_o,v_old
+                    2
+Invalid declaration of or reference to symbol `rho' at (1) [initially seen at (2)]
+SPH_usr.F:26: warning:
+           if(gas(p_list(i_,timebin)))call Rho_(p_list(i_,timebin))
+                                           1
+SPH_usr.F:35: (continued):
+         subroutine Rho_(i)
+                    2
+Argument #1 (named `i') of `rho_' is one type at (2) but is some other type at (1) [info -f g77 M GLOBALS]
+SPH_common.F: In subroutine `get_kernel_grad':
+SPH_common.F:290: 
+         common /hlist/ h_list(nn)
+                               ^
+Invalid declaration of or reference to symbol `nn' at (^) [initially seen at (^)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+           1
+SPH_common.F:290: (continued):
+         common /hlist/ h_list(nn)
+                        2
+Invalid declaration of or reference to symbol `h_list' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                         1
+SPH_common.F:291: (continued):
+         common /status/ gas(nn)
+                         2
+Invalid declaration of or reference to symbol `gas' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+              1
+SPH_common.F:293: (continued):
+         common /particle_mass/ mass(nn)
+                                2
+Invalid declaration of or reference to symbol `mass' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                  1
+SPH_common.F:294: (continued):
+         common /particle_size/ s(nn)
+                                2
+Invalid declaration of or reference to symbol `s' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                             1
+SPH_common.F:296: (continued):
+         common /number_of_neighbours/ neighb (nn)
+                                       2
+Invalid declaration of or reference to symbol `neighb' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                       1
+SPH_common.F:297: (continued):
+         common /smoothing_lengths/ h (nn)
+                                    2
+Invalid declaration of or reference to symbol `h' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                         1
+SPH_common.F:298: (continued):
+        & ,h_dot (nn)
+           2
+Invalid declaration of or reference to symbol `h_dot' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                    1
+SPH_common.F:299: (continued):
+         common /sph_densities/ rho (nn)
+                                2
+Invalid declaration of or reference to symbol `rho' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+           1
+SPH_common.F:300: (continued):
+         common /pressure/ P (nn)
+                           2
+Invalid declaration of or reference to symbol `p' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                              1
+SPH_common.F:301: (continued):
+         common /temperatures/ Temp (nn)
+                               2
+Invalid declaration of or reference to symbol `temp' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                   1
+SPH_common.F:302: (continued):
+         common /speed_of_the_sound/ cs (nn)
+                                     2
+Invalid declaration of or reference to symbol `cs' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+           1
+SPH_common.F:304: (continued):
+        & u (nn)
+          2
+Invalid declaration of or reference to symbol `u' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                   1
+SPH_common.F:305: (continued):
+        & ,u_o (nn)
+           2
+Invalid declaration of or reference to symbol `u_o' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                      1
+SPH_common.F:306: (continued):
+        & ,u_old (nn)
+           2
+Invalid declaration of or reference to symbol `u_old' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+             1
+SPH_common.F:307: (continued):
+        & ,u_dot (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                   1
+SPH_common.F:308: (continued):
+        & ,u_dot_visc (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot_visc' at (2) [initially seen at (1)]
+SPH_common.F:45: 
+        & ,lambda,luminosity,two_third,xnorm,root_3,sc,W_p,W_s
+           1
+SPH_common.F:309: (continued):
+        & ,lambda (nn)
+           2
+Invalid declaration of or reference to symbol `lambda' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                            1
+SPH_common.F:310: (continued):
+        & ,vmonag (nn)
+           2
+Invalid declaration of or reference to symbol `vmonag' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+           1
+SPH_common.F:316: (continued):
+        & iseed(nn)
+          2
+Invalid declaration of or reference to symbol `iseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                 1
+SPH_common.F:317: (continued):
+        & ,jseed(nn)
+           2
+Invalid declaration of or reference to symbol `jseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                       1
+SPH_common.F:318: (continued):
+        & ,kseed(nn)
+           2
+Invalid declaration of or reference to symbol `kseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                             1
+SPH_common.F:319: (continued):
+        & ,lseed(nn)
+           2
+Invalid declaration of or reference to symbol `lseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                   1
+SPH_common.F:320: (continued):
+        & ,mseed(nn)
+           2
+Invalid declaration of or reference to symbol `mseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                         1
+SPH_common.F:321: (continued):
+        & ,nseed(nn)
+           2
+Invalid declaration of or reference to symbol `nseed' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                  1
+SPH_common.F:322: (continued):
+         common /not_conv_list/ i_list(nn)
+                                2
+Invalid declaration of or reference to symbol `i_list' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                   1
+SPH_common.F:351: (continued):
+         common /t/ t(nn,four)
+                    2
+Invalid declaration of or reference to symbol `t' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                                    1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                                           2
+Invalid declaration of or reference to symbol `maxneighb' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                 1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                            2
+Invalid declaration of or reference to symbol `neighb_list' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+             1
+SPH_common.F:358: (continued):
+         common /viscotensor/ QQ(nn,maxneighb)
+                              2
+Invalid declaration of or reference to symbol `qq' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                            1
+SPH_common.F:363: (continued):
+         common /grad_list/ grad_W(nn,maxneighb,dim)
+                            2
+Invalid declaration of or reference to symbol `grad_w' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                      1
+SPH_common.F:373: (continued):
+        & g (nn,dim)
+          2
+Invalid declaration of or reference to symbol `g' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                      1
+SPH_common.F:374: (continued):
+        & ,q_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `q_acc' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                1
+SPH_common.F:375: (continued):
+        & ,P_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `p_acc' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                                    1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                               2
+Invalid declaration of or reference to symbol `ntbins' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                  1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                           2
+Invalid declaration of or reference to symbol `n_p' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                1
+SPH_common.F:392: (continued):
+         common /timelist/ p_list(nn,ntbins)
+                           2
+Invalid declaration of or reference to symbol `p_list' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+           1
+SPH_common.F:393: (continued):
+         common /individual_time/dt_old(nn)
+                                 2
+Invalid declaration of or reference to symbol `dt_old' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                              1
+SPH_common.F:394: (continued):
+         common /time_steps/ dt(0:ntbins)
+                             2
+Invalid declaration of or reference to symbol `dt' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                   1
+SPH_common.F:395: (continued):
+         common /elapsed_time/ dt_elapsed(ntbins)
+                               2
+Invalid declaration of or reference to symbol `dt_elapsed' at (2) [initially seen at (1)]
+SPH_common.F:29: 
+        & ,lst,ifile,ni,vert,ini,nit
+           1
+SPH_common.F:402: (continued):
+         common /octlist/ lst(nn,vert)
+                          2
+Invalid declaration of or reference to symbol `lst' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                              1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                                2
+Invalid declaration of or reference to symbol `nnode' at (2) [initially seen at (1)]
+SPH_common.F:60: 
+         logical nextnode,permit,convergence
+                          1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                         2
+Invalid declaration of or reference to symbol `permit' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                        1
+SPH_common.F:405: (continued):
+        & arest (nnode)
+          2
+Invalid declaration of or reference to symbol `arest' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                   1
+SPH_common.F:407: (continued):
+        & cellmass (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `cellmass' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                            1
+SPH_common.F:409: (continued):
+        & x_cell (nnode, vert, dim)
+          2
+Invalid declaration of or reference to symbol `x_cell' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                  1
+SPH_common.F:411: (continued):
+        & p_inertia(nnode, vert, dim, dim)
+          2
+Invalid declaration of or reference to symbol `p_inertia' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                      1
+SPH_common.F:413: (continued):
+        & np (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `np' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                       1
+SPH_common.F:414: (continued):
+        & ,label (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `label' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                              1
+SPH_common.F:415: (continued):
+        & ,down (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `down' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                   1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                               2
+Invalid declaration of or reference to symbol `maxoctants' at (2) [initially seen at (1)]
+SPH_common.F:43: 
+        & ,E_tot,W_tot,T_tot,U_tot,E_min,E_max,Eo,courant,vmoment,gnode
+                                                                  1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                         2
+Invalid declaration of or reference to symbol `gnode' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                      1
+SPH_common.F:420: (continued):
+         common /positions/ xp(nn,dim)
+                            2
+Invalid declaration of or reference to symbol `xp' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                    1
+SPH_common.F:421: (continued):
+         common /velocities/ v(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `v' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                        1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                     2
+Invalid declaration of or reference to symbol `v_o' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                            1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                                  2
+Invalid declaration of or reference to symbol `v_old' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+              1
+SPH_common.F:424: (continued):
+         common /result_acc/ accel(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `accel' at (2) [initially seen at (1)]
+SPH_common.F:433: 
+         common /boxy_coordinates/box (nn,dim)
+                                  ^
+Invalid declaration of or reference to symbol `box' at (^) [initially seen at (^)]
+SPH_usr.F:72: 
+         common /aux/ aux(nn,dim)
+                      ^
+Invalid declaration of or reference to symbol `aux' at (^) [initially seen at (^)]
+SPH_usr.F:73: 
+         equivalence (aux,x_ij)
+                          1
+SPH_usr.F:74: (continued):
+         dimension x_ij(nn,dim)
+                   2
+Invalid declaration of or reference to symbol `x_ij' at (2) [initially seen at (1)]
+SPH_common.F: In subroutine `get_h_dot':
+SPH_common.F:290: 
+         common /hlist/ h_list(nn)
+                               ^
+Invalid declaration of or reference to symbol `nn' at (^) [initially seen at (^)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+           1
+SPH_common.F:290: (continued):
+         common /hlist/ h_list(nn)
+                        2
+Invalid declaration of or reference to symbol `h_list' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                         1
+SPH_common.F:291: (continued):
+         common /status/ gas(nn)
+                         2
+Invalid declaration of or reference to symbol `gas' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+              1
+SPH_common.F:293: (continued):
+         common /particle_mass/ mass(nn)
+                                2
+Invalid declaration of or reference to symbol `mass' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                  1
+SPH_common.F:294: (continued):
+         common /particle_size/ s(nn)
+                                2
+Invalid declaration of or reference to symbol `s' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                             1
+SPH_common.F:296: (continued):
+         common /number_of_neighbours/ neighb (nn)
+                                       2
+Invalid declaration of or reference to symbol `neighb' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                       1
+SPH_common.F:297: (continued):
+         common /smoothing_lengths/ h (nn)
+                                    2
+Invalid declaration of or reference to symbol `h' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                         1
+SPH_common.F:298: (continued):
+        & ,h_dot (nn)
+           2
+Invalid declaration of or reference to symbol `h_dot' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                    1
+SPH_common.F:299: (continued):
+         common /sph_densities/ rho (nn)
+                                2
+Invalid declaration of or reference to symbol `rho' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+           1
+SPH_common.F:300: (continued):
+         common /pressure/ P (nn)
+                           2
+Invalid declaration of or reference to symbol `p' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                              1
+SPH_common.F:301: (continued):
+         common /temperatures/ Temp (nn)
+                               2
+Invalid declaration of or reference to symbol `temp' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                   1
+SPH_common.F:302: (continued):
+         common /speed_of_the_sound/ cs (nn)
+                                     2
+Invalid declaration of or reference to symbol `cs' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+           1
+SPH_common.F:304: (continued):
+        & u (nn)
+          2
+Invalid declaration of or reference to symbol `u' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+                   1
+SPH_common.F:305: (continued):
+        & ,u_o (nn)
+           2
+Invalid declaration of or reference to symbol `u_o' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                      1
+SPH_common.F:306: (continued):
+        & ,u_old (nn)
+           2
+Invalid declaration of or reference to symbol `u_old' at (2) [initially seen at (1)]
+SPH_common.F:47: 
+        & ,u,u_dot,u_o,h,h_dot
+             1
+SPH_common.F:307: (continued):
+        & ,u_dot (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                   1
+SPH_common.F:308: (continued):
+        & ,u_dot_visc (nn)
+           2
+Invalid declaration of or reference to symbol `u_dot_visc' at (2) [initially seen at (1)]
+SPH_common.F:45: 
+        & ,lambda,luminosity,two_third,xnorm,root_3,sc,W_p,W_s
+           1
+SPH_common.F:309: (continued):
+        & ,lambda (nn)
+           2
+Invalid declaration of or reference to symbol `lambda' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                                                            1
+SPH_common.F:310: (continued):
+        & ,vmonag (nn)
+           2
+Invalid declaration of or reference to symbol `vmonag' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+           1
+SPH_common.F:316: (continued):
+        & iseed(nn)
+          2
+Invalid declaration of or reference to symbol `iseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                 1
+SPH_common.F:317: (continued):
+        & ,jseed(nn)
+           2
+Invalid declaration of or reference to symbol `jseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                       1
+SPH_common.F:318: (continued):
+        & ,kseed(nn)
+           2
+Invalid declaration of or reference to symbol `kseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                             1
+SPH_common.F:319: (continued):
+        & ,lseed(nn)
+           2
+Invalid declaration of or reference to symbol `lseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                   1
+SPH_common.F:320: (continued):
+        & ,mseed(nn)
+           2
+Invalid declaration of or reference to symbol `mseed' at (2) [initially seen at (1)]
+SPH_common.F:35: 
+        & ,iseed,jseed,kseed,lseed,mseed,nseed,tol_nfix
+                                         1
+SPH_common.F:321: (continued):
+        & ,nseed(nn)
+           2
+Invalid declaration of or reference to symbol `nseed' at (2) [initially seen at (1)]
+SPH_common.F:65: 
+        & ,h_list,i_list,gas
+                  1
+SPH_common.F:322: (continued):
+         common /not_conv_list/ i_list(nn)
+                                2
+Invalid declaration of or reference to symbol `i_list' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                   1
+SPH_common.F:351: (continued):
+         common /t/ t(nn,four)
+                    2
+Invalid declaration of or reference to symbol `t' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                                    1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                                           2
+Invalid declaration of or reference to symbol `maxneighb' at (2) [initially seen at (1)]
+SPH_common.F:34: 
+        & ,n_fix,neighb_list,neighb
+                 1
+SPH_common.F:357: (continued):
+         common /sph_lists/ neighb_list(nn,maxneighb)
+                            2
+Invalid declaration of or reference to symbol `neighb_list' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+             1
+SPH_common.F:358: (continued):
+         common /viscotensor/ QQ(nn,maxneighb)
+                              2
+Invalid declaration of or reference to symbol `qq' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                            1
+SPH_common.F:363: (continued):
+         common /grad_list/ grad_W(nn,maxneighb,dim)
+                            2
+Invalid declaration of or reference to symbol `grad_w' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                      1
+SPH_common.F:373: (continued):
+        & g (nn,dim)
+          2
+Invalid declaration of or reference to symbol `g' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                      1
+SPH_common.F:374: (continued):
+        & ,q_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `q_acc' at (2) [initially seen at (1)]
+SPH_common.F:51: 
+        & ,P,QQ,P_acc,q_acc,grad_W,u_dot_visc,Temp,cs,u_old,vmonag
+                1
+SPH_common.F:375: (continued):
+        & ,P_acc(nn,dim)
+           2
+Invalid declaration of or reference to symbol `p_acc' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                                                    1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                               2
+Invalid declaration of or reference to symbol `ntbins' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                  1
+SPH_common.F:391: (continued):
+         common /time_bin/ n_p(ntbins)
+                           2
+Invalid declaration of or reference to symbol `n_p' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                1
+SPH_common.F:392: (continued):
+         common /timelist/ p_list(nn,ntbins)
+                           2
+Invalid declaration of or reference to symbol `p_list' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+           1
+SPH_common.F:393: (continued):
+         common /individual_time/dt_old(nn)
+                                 2
+Invalid declaration of or reference to symbol `dt_old' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                              1
+SPH_common.F:394: (continued):
+         common /time_steps/ dt(0:ntbins)
+                             2
+Invalid declaration of or reference to symbol `dt' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                                   1
+SPH_common.F:395: (continued):
+         common /elapsed_time/ dt_elapsed(ntbins)
+                               2
+Invalid declaration of or reference to symbol `dt_elapsed' at (2) [initially seen at (1)]
+SPH_common.F:29: 
+        & ,lst,ifile,ni,vert,ini,nit
+           1
+SPH_common.F:402: (continued):
+         common /octlist/ lst(nn,vert)
+                          2
+Invalid declaration of or reference to symbol `lst' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                              1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                                2
+Invalid declaration of or reference to symbol `nnode' at (2) [initially seen at (1)]
+SPH_common.F:60: 
+         logical nextnode,permit,convergence
+                          1
+SPH_common.F:403: (continued):
+         common /permit/ permit(nnode)
+                         2
+Invalid declaration of or reference to symbol `permit' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                                                        1
+SPH_common.F:405: (continued):
+        & arest (nnode)
+          2
+Invalid declaration of or reference to symbol `arest' at (2) [initially seen at (1)]
+SPH_common.F:40: 
+         real mass,cellmass,epsilon,eps2_min,eps2_max,g,arest,pi
+                   1
+SPH_common.F:407: (continued):
+        & cellmass (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `cellmass' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                            1
+SPH_common.F:409: (continued):
+        & x_cell (nnode, vert, dim)
+          2
+Invalid declaration of or reference to symbol `x_cell' at (2) [initially seen at (1)]
+SPH_common.F:41: 
+        & ,dt_old,p_inertia,x_cell,dt_elapsed,dt,dtm
+                  1
+SPH_common.F:411: (continued):
+        & p_inertia(nnode, vert, dim, dim)
+          2
+Invalid declaration of or reference to symbol `p_inertia' at (2) [initially seen at (1)]
+SPH_common.F:30: 
+        & ,kwsc,n_timebins,ntbins2,n,next,maxnode,n_p,np,ifirst
+                                                      1
+SPH_common.F:413: (continued):
+        & np (nnode, vert)
+          2
+Invalid declaration of or reference to symbol `np' at (2) [initially seen at (1)]
+SPH_common.F:27: 
+        & ,time_level,global_time_level,timebin,p_list,label
+                                                       1
+SPH_common.F:414: (continued):
+        & ,label (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `label' at (2) [initially seen at (1)]
+SPH_common.F:26: 
+         integer dim,one,two,three,four,eight,down,t,count,row,node,ntbins
+                                              1
+SPH_common.F:415: (continued):
+        & ,down (nnode, vert)
+           2
+Invalid declaration of or reference to symbol `down' at (2) [initially seen at (1)]
+SPH_common.F:28: 
+        & ,deepest,maxoctants,nnode,maxneighb,ichoice,is,ns
+                   1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                               2
+Invalid declaration of or reference to symbol `maxoctants' at (2) [initially seen at (1)]
+SPH_common.F:43: 
+        & ,E_tot,W_tot,T_tot,U_tot,E_min,E_max,Eo,courant,vmoment,gnode
+                                                                  1
+SPH_common.F:417: (continued):
+         common /gnodes/ gnode(maxoctants,dim)
+                         2
+Invalid declaration of or reference to symbol `gnode' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                      1
+SPH_common.F:420: (continued):
+         common /positions/ xp(nn,dim)
+                            2
+Invalid declaration of or reference to symbol `xp' at (2) [initially seen at (1)]
+SPH_common.F:42: 
+        & ,angmom,s,v,xp,theta,theta2,tot_mass
+                    1
+SPH_common.F:421: (continued):
+         common /velocities/ v(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `v' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                        1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                     2
+Invalid declaration of or reference to symbol `v_o' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+                            1
+SPH_common.F:423: (continued):
+         common /v0/ v_o(nn,dim), v_old(nn,dim)
+                                  2
+Invalid declaration of or reference to symbol `v_old' at (2) [initially seen at (1)]
+SPH_common.F:46: 
+        & ,cc,accel,rho,v_o,v_old
+              1
+SPH_common.F:424: (continued):
+         common /result_acc/ accel(nn,dim)
+                             2
+Invalid declaration of or reference to symbol `accel' at (2) [initially seen at (1)]
+SPH_common.F:433: 
+         common /boxy_coordinates/box (nn,dim)
+                                  ^
+Invalid declaration of or reference to symbol `box' at (^) [initially seen at (^)]
+SPH_usr.F: Outside of any program unit:
+In file included from SPH_usr.F:24:
+In file included from SPH_usr.F:37:
+In file included from SPH_usr.F:72:
+In file included from SPH_usr.F:149:
+SPH_common.F:290: size of variable `hlist_' is too large
+SPH_common.F:291: size of variable `status_' is too large
+SPH_common.F:293: size of variable `particle_mass__' is too large
+SPH_common.F:294: size of variable `particle_size__' is too large
+SPH_common.F:296: size of variable `number_of_neighbours__' is too large
+SPH_common.F:297: size of variable `smoothing_lengths__' is too large
+SPH_common.F:299: size of variable `sph_densities__' is too large
+SPH_common.F:300: size of variable `pressure_' is too large
+SPH_common.F:301: size of variable `temperatures_' is too large
+SPH_common.F:302: size of variable `speed_of_the_sound__' is too large
+SPH_common.F:303: size of variable `thermal_energ__' is too large
+SPH_common.F:315: size of variable `seeds_' is too large
+SPH_common.F:322: size of variable `not_conv_list__' is too large
+SPH_common.F:351: size of variable `t_' is too large
+SPH_common.F:357: size of variable `sph_lists__' is too large
+SPH_common.F:358: size of variable `viscotensor_' is too large
+SPH_common.F:363: size of variable `grad_list__' is too large
+SPH_common.F:370: size of variable `forces_' is too large
+SPH_common.F:391: size of variable `time_bin__' is too large
+SPH_common.F:392: size of variable `timelist_' is too large
+SPH_common.F:393: size of variable `individual_time__' is too large
+SPH_common.F:394: size of variable `time_steps__' is too large
+SPH_common.F:395: size of variable `elapsed_time__' is too large
+SPH_common.F:402: size of variable `octlist_' is too large
+SPH_common.F:403: size of variable `permit_' is too large
+SPH_common.F:404: size of variable `tree_real_0__' is too large
+SPH_common.F:406: size of variable `tree_real_1__' is too large
+SPH_common.F:408: size of variable `tree_real_3__' is too large
+SPH_common.F:410: size of variable `tree_real_6__' is too large
+SPH_common.F:412: size of variable `tree_intg__' is too large
+SPH_common.F:417: size of variable `gnodes_' is too large
+SPH_common.F:420: size of variable `positions_' is too large
+SPH_common.F:421: size of variable `velocities_' is too large
+SPH_common.F:423: size of variable `v0_' is too large
+SPH_common.F:424: size of variable `result_acc__' is too large
+SPH_usr.F:24: size of variable `boxy_coordinates__' is too large
+SPH_usr.F:72: size of variable `aux_' is too large
+make[1]: *** [SPH_usr.o] Error 1
+make[1]: Leaving directory `/home/eraldo/treespmhd/treecode'
+make: *** [nbody] Error 2

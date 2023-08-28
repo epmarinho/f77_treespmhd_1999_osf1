@@ -1,0 +1,129 @@
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  17-Jul-2000 17:00:31
+      SUBROUTINE TEST_PARALLELIZATION ( N, DIM, Y, R )
+       PARAMETER (EPSILON = 0.01)
+       INTEGER N, I, J, DIM
+       REAL X(N,DIM), Y(N,DIM), R
+       INTEGER II2, II1
+       INTEGER*2 HI1
+       PARAMETER (II2 = 1, HI1 = 1, II1 = 0)
+       EXTERNAL MPPTID, MPTEPA, MPTXPA, MPPFKD, MPOFRK, 
+     X   PKTEST_PARALLELIZATION_
+       INTEGER MPPTID, MPPFKD, II9(0:13)
+       CHARACTER AA2*41
+       INTEGER II8
+       REAL RR1
+       LOGICAL LL1
+       AUTOMATIC II8
+       DATA II9(0)/6/ 
+       DATA II9(1)/0/ 
+       DATA II9(2)/41/ 
+       DATA AA2/';test_parallel.f;TEST_PARALLELIZATION;5;;'/ 
+       EQUIVALENCE (AA2, II9(3))
+       INTEGER II11, II10
+       PARAMETER (II11 = 0, II10 = 13)
+       II8 = MPPTID ()
+       LL1 = DIM .GT. II1
+       IF (N .GT. II10 .AND. MPPFKD () .EQ. II11) THEN
+        CALL MPOFRK (PKTEST_PARALLELIZATION_,II9,R,DIM,LL1,X,Y,N)
+       ELSE
+C!!!!! PARALLEL REGION IF (N .GT. 13) SHARED (N,DIM,X,LL1,Y,R) LOCAL (
+C!!!!!& RR1,I,J)
+        CALL MPTEPA (II8)
+C!!!!! PARALLEL DO LAST LOCAL (R)
+        DO I=HI1,N
+         R = EPSILON
+         DO J=HI1,DIM
+          R = R + X(I,J) * X(I,J)
+         END DO
+         R = SQRT (R)
+         IF (LL1) THEN
+          RR1 = II2 / (R * R * R)
+          DO J=HI1,DIM
+           Y(I,J) = -X(I,J) * RR1
+          END DO
+         END IF
+        END DO
+C!!!!! END PARALLEL DO NOWAIT
+        CALL MPTXPA (II8)
+C!!!!! END PARALLEL REGION 
+       END IF
+      END
+C     KAP/Digital_UA_F      4.0 k3011126 980529 o5r3so3  17-Jul-2000 17:00:31
+      SUBROUTINE PKTEST_PARALLELIZATION_ ( MPPID, MPPNPR, R1, DIM1, LL11
+     X  , X1, Y1, N1 )
+       REAL R1
+       AUTOMATIC II4
+       INTEGER II4, MPPIOA
+       EXTERNAL MPPIOA
+       AUTOMATIC J1
+       INTEGER J1
+       INTEGER MPPFOA1
+       REAL EPSILON1
+       PARAMETER (EPSILON1 = 0.01)
+       INTEGER MPPID
+       AUTOMATIC RR11
+       REAL RR11
+       AUTOMATIC II5
+       INTEGER II5, MPPTID
+       EXTERNAL MPPTID
+       INTEGER N1
+       AUTOMATIC R2
+       REAL R2
+       INTEGER II21
+       PARAMETER (II21 = 1)
+       AUTOMATIC II3
+       INTEGER II3
+       AUTOMATIC I1
+       INTEGER I1
+       AUTOMATIC II6
+       INTEGER II6
+       AUTOMATIC II7
+       INTEGER II7
+       INTEGER DIM1
+       INTEGER*2 HI11
+       PARAMETER (HI11 = 1)
+       INTEGER*8 MPPFOD1(0:7,0:127)
+       LOGICAL LL11
+       INTEGER MPPNPR
+       REAL X1(N1,DIM1)
+       REAL Y1(N1,DIM1)
+       COMMON /MPPFOA/ MPPFOA1
+       COMMON /MPPFOD/ MPPFOD1
+       INTEGER II18, II17, II16, II15, II14, II13, II12
+       PARAMETER (II18 = 1, II17 = 2, II16 = 3, II15 = 4, II14 = 5)
+       PARAMETER (II13 = 6, II12 = 0)
+       II7 = MPPTID ()
+       IF (MPPFOA1 .LT. II12) THEN
+        MPPFOD1(MPPIOA (II13),II7) = %LOC (N1)
+        MPPFOD1(MPPIOA (II14),II7) = %LOC (Y1)
+        MPPFOD1(MPPIOA (II15),II7) = %LOC (X1)
+        MPPFOD1(MPPIOA (II16),II7) = %LOC (LL11)
+        MPPFOD1(MPPIOA (II17),II7) = %LOC (DIM1)
+        MPPFOD1(MPPIOA (II18),II7) = %LOC (R1)
+       END IF
+C!!!!! PARALLEL REGION IF (N .GT. 13) SHARED (N,DIM,X,LL1,Y,R) LOCAL (
+C!!!!!& RR1,I,J)
+       II5 = N1 - HI11 + II18
+       II6 = (II5 + MPPNPR - II18) / MPPNPR
+       II3 = HI11 + MPPID * II6
+       II4 = MIN (N1, II3 + (II6 - II18))
+C!!!!! PARALLEL DO LAST LOCAL (R)
+       DO I1=II3,II4
+        R2 = EPSILON1
+        DO J1=HI11,DIM1
+         R2 = R2 + X1(I1,J1) * X1(I1,J1)
+        END DO
+        R2 = SQRT (R2)
+        IF (LL11) THEN
+         RR11 = II21 / (R2 * R2 * R2)
+         DO J1=HI11,DIM1
+          Y1(I1,J1) = -X1(I1,J1) * RR11
+         END DO
+        END IF
+       END DO
+       IF (I1 .NE. II3 .AND. I1 .GT. N1) THEN
+        R1 = R2
+       END IF
+C!!!!! END PARALLEL DO NOWAIT
+C!!!!! END PARALLEL REGION 
+      END

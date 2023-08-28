@@ -1,0 +1,163 @@
+This is TeX, Version 3.141592 (MiKTeX 2.3) (preloaded format=latex 2000.11.28)  13 MAY 2004 22:28
+**tree
+(tree.tex
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for english, french, german, ngerman, du
+mylang, nohyphenation, loaded.
+(D:\texmf\tex\latex\base\article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(D:\texmf\tex\latex\base\size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+No file tree.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !///////////////////////////////////////////////////////////
+////////////[] 
+ []
+
+
+Overfull \hbox (32.9967pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !///////////////////////////////////////////////////////////
+////////////[] 
+ []
+
+
+Overfull \hbox (11.99689pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      * toma o vertice inferior do triedro circunscrito no 
+sistema:[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      * determina o cubo circunscrito cujas arestas sao pot
+encias[] 
+ []
+
+[1
+
+]
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 571--571
+[]     \OT1/cmtt/m/n/10 &      '%err: particles were distributed into a singula
+rity!!'[] 
+ []
+
+
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      set of n mass-points in 3-dim space. the method consi
+sts on[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      updating the particles in all corresponding nodes in 
+each level[] 
+ []
+
+
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      descendent construction has the principal advantage o
+n its easy[] 
+ []
+
+[2]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      while any particle is non-leaf yet, continue building
+ tree:[] 
+ []
+
+[3]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 #if !(defined(_TUBE)||defined(_NON_SELFGRAVITATING)||defined
+(_2D))[] 
+ []
+
+[4]
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 571--571
+[]             \OT1/cmtt/m/n/10 x_cell(node,cell,j)=x_cell(node,cell,j)+xp(ip,j
+)*mass(ip)[] 
+ []
+
+[5]
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 571--571
+[]           \OT1/cmtt/m/n/10 x_cell(node,cell,j)=x_cell(node,cell,j)/cellmass(
+node,cell)[] 
+ []
+
+[6]
+Overfull \hbox (59.24648pt too wide) in paragraph at lines 571--571
+[]              \OT1/cmtt/m/n/10 print*,'Tree-singularity occurring: assuming d
+ynamic round-off'[] 
+ []
+
+[7] [8]
+Overfull \hbox (22.4968pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      calcula o novo parametro de peano promovendo os octan
+tes para o[] 
+ []
+
+
+Overfull \hbox (17.24684pt too wide) in paragraph at lines 571--571
+[]\OT1/cmtt/m/n/10 !      reduz o parametro de peano a fim de evitar estouro de
+ inteiro:[] 
+ []
+
+[9] [10] [11]
+Overfull \hbox (1.49698pt too wide) in paragraph at lines 571--571
+[]              \OT1/cmtt/m/n/10 D_x(1,i)  =  x_cell(node1,m1,i) - x_cell(node2
+,m2,i)[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 571--571
+[]                \OT1/cmtt/m/n/10 p_inertia(node1,m1,i,j) = p_inertia(node1,m1
+,i,j) +[] 
+ []
+
+
+Overfull \hbox (38.24666pt too wide) in paragraph at lines 571--571
+[]     \OT1/cmtt/m/n/10 &                                          p_inertia(no
+de2,m2,i,j) +[] 
+ []
+
+
+Overfull \hbox (6.74693pt too wide) in paragraph at lines 571--571
+[]     \OT1/cmtt/m/n/10 &                         D_x(1,i)*cellmass(node2,m2)*D
+_x(1,j)[] 
+ []
+
+[12] [13] (tree.aux) ) 
+Here is how much of TeX's memory you used:
+ 210 strings out of 96052
+ 1942 string characters out of 1197190
+ 51008 words of memory out of 1051626
+ 3219 multiletter control sequences out of 35000
+ 3808 words of font info for 15 fonts, out of 500000 for 1000
+ 14 hyphenation exceptions out of 607
+ 23i,4n,17p,108b,302s stack positions out of 1500i,500n,5000p,200000b,32768s
+
+Output written on tree.dvi (13 pages, 14456 bytes).

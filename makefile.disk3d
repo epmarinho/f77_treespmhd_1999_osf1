@@ -1,0 +1,12 @@
+disk3d:=DIRECTIVES= \
+		-D_SIMPLER_DISK_MODEL \
+		-D_MOVIE_ \
+		-D_40960 \
+		-D_3D \
+		-D_time_resol_7 \
+		-D_mid_neighbor_resol
+disk3d:
+	make exec \
+		'EXTRA_OBJS=$(COOL_OBJS)' \
+		'SUFFIX=disk3d' \
+		'DIRECTIVES=$(DIRECTIVES)'
